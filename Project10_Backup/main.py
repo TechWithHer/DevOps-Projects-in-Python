@@ -12,6 +12,7 @@ print("Lets begin")
 
 #if the user selects the naming option, this function will run.
 def naming_backup(backup_name):
+    shutil.make_archive(backup_name, 'TAR.BZ2', source) 
     return backup_name
 
 #selecting file_type and making the backup using backup_name by default or by backup_name selected by the user
@@ -28,27 +29,30 @@ def make_backup(source, destination, backup_name):
         elif file_type == "3":
             backup_name = os.path.join(destination,f"backup_{backup_name}.TAR.BZ2") #giving the complete path of the backup
             shutil.make_archive(backup_name, 'TAR.BZ2', source) #The actual backup is being generated
-    
-    print(f"Backup Done. The File Name is {backup_name}")
+    print("INVALID SOURCE PATH")
+
+print(f"Backup Done. The File Name is {backup_name}")
 
 
 
-source = input("Please enter the Source Path")
+source = input("Please enter the Source Path- \n")
 destination = "/Users/apple/Desktop/TechWithHer/DevOps-Projects-in-Python/Project10_Backup/backup_folder"
+print (f"Please note the destination path will be: {destination}")
+sleep(2)
 #asking the user to enter the type of backup file
-file_type = input("Enter the type of compressed file you want to create: 1 - ZIP, 2 - TAR.ZIP , 3 - TAR.BZ2, choose 1 or 2 or 3")
+file_type = input("Enter the type of compressed file you want to create: 1 - ZIP, 2 - TAR.ZIP , 3 - TAR.BZ2, choose 1 or 2 or 3 \n")
+
 while True:
     naming_option = input("Do you want to name the folder yourself? (Y/N): ").strip().lower()
-    backup_name = naming_backup(backup_name)
 
     if naming_option == "y":
-        name = input("Enter the name of the folder: ")
+        name = input("Enter the name of the folder: ").strip()
         # You can now use `name` as needed
-        make_backup(source, destination,backup_name)
+        make_backup(source, destination, name)
         break
     elif naming_option == "n":
         print("Using the system to generate the name")
-        make_backup(source, destination,backup_name)  # make sure `source` is defined
+        make_backup(source, destination) 
         break
     else:
         print("Invalid input. Please enter Y or N.")
