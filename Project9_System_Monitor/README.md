@@ -1,67 +1,128 @@
-System_Monitor – Real-Time System Resource Monitoring and Alerting Tool
+# 🖥️ System_Monitor – Real-Time System Resource Monitoring & Alerting Tool
 
-📌 Problem Statement (Project Objective):
-As a DevOps engineer, you're responsible for maintaining the health and performance of systems running in production. Your task is to build a Python-based System Monitor that:
+A Python-based tool that monitors CPU, memory, disk, and network usage in real-time, logs system health, and triggers alerts when resource thresholds are breached.
 
-Periodically checks CPU, memory, disk, and network usage.
+## 🚀 Project Purpose
 
-Triggers alerts (via email, log, or other notifications) if any usage crosses predefined thresholds.
+This project demonstrates essential DevOps capabilities, including system monitoring, logging, alerting, and automation. It's ideal for showcasing your scripting skills and understanding of infrastructure health tracking in real-time environments.
 
-Logs system health statistics regularly for auditing and troubleshooting.
+---
 
-Optionally exposes system metrics via an HTTP API for Prometheus/Grafana-style integration.
+## 📌 Features
 
-🛠️ Expected Features (Solution Requirements):
-Resource Monitoring
+- ✅ Monitor CPU, Memory, Disk, and Network usage
+- ⚠️ Alert via email or logs when thresholds are breached
+- 🗂️ Log all resource stats with timestamps
+- 🔁 Runs continuously or on schedule (configurable)
+- 🛠️ Easy to configure thresholds (via CLI or config file)
+- 🌐 (Optional) REST API for exposing metrics
 
-Track real-time CPU %, Memory %, Disk %, and Network stats.
+---
 
-Set thresholds for each resource (e.g., CPU > 80%, Memory > 75%).
+## 🧠 Use Case Scenario
 
-Logging Mechanism
+Imagine you are responsible for multiple EC2/Linux instances in production. One of them is becoming unresponsive. With this script:
 
-Store logs with timestamps in a local file (e.g., system_monitor.log).
+- You are alerted when CPU spikes >80%
+- You get logs that help pinpoint if it's a memory leak or I/O bottleneck
+- You proactively resolve issues before users are impacted
 
-Include info like: timestamp, resource type, current usage, and alert status.
+---
 
-Alerting System
+## 🔧 Installation
 
-If thresholds are breached, trigger an alert:
+```bash
+git clone https://github.com/YourUsername/System_Monitor.git
+cd System_Monitor
+pip install -r requirements.txt
+⚙️ Usage
+bash
+Copy
+Edit
+python3 system_monitor.py
+You can optionally configure:
 
-Option 1: Send an email (using SMTP).
+Check interval (e.g., every 30 seconds)
 
-Option 2: Write an alert to a separate alerts.log.
+Alert thresholds
 
-Option 3: (Bonus) Send a Telegram or Slack message.
+Notification method (Email, Log)
 
-Automation & Scheduling
+Output log file location
 
-Run monitoring checks every N seconds/minutes (configurable).
+📝 Configuration
+You can customize thresholds in config.yaml or via CLI args:
 
-Optionally use cron or schedule with schedule or APScheduler.
+yaml
+Copy
+Edit
+cpu_threshold: 80
+memory_threshold: 75
+disk_threshold: 90
+network_threshold: 1000 # in KB/s
+📂 Directory Structure
+lua
+Copy
+Edit
+System_Monitor/
+├── system_monitor.py
+├── config.yaml
+├── logs/
+│   └── system_monitor.log
+├── alerts/
+│   └── alerts.log
+├── README.md
+└── requirements.txt
+📈 Sample Log Output
+yaml
+Copy
+Edit
+[2025-07-24 12:01:35] CPU: 45%, Memory: 67%, Disk: 40%
+[2025-07-24 12:03:15] ALERT! CPU usage crossed 85%
+📬 Optional Alerting
+SMTP Email Alert
 
-Configurable Thresholds
+Telegram/Slack notification (Bonus)
 
-Allow user to customize limits for CPU, memory, etc., via a config file or CLI.
+Console + log file alert fallback
 
-Extensibility (Optional)
+💡 Future Enhancements
+Expose data via REST API
 
-Serve metrics via a simple REST API.
+Grafana integration for live dashboards
 
-Export logs in JSON or CSV.
+Dockerize the tool for deployment
 
-Add historical charts using matplotlib.
+👨‍💻 Built With
+Python 3
 
-🎯 What DevOps Skills This Showcases:
-Monitoring & Alerting (core DevOps responsibility)
+psutil – For resource usage stats
 
-Python scripting & automation
+smtplib – For email alerts
 
-Resource usage tracking (similar to tools like Nagios/Prometheus)
+schedule/APScheduler – For job scheduling
 
-Logging & incident response
+🧑‍💼 DevOps Concepts Demonstrated
+System Monitoring & Alerting
 
-Config management (YAML/INI/ENV file reading)
+Automation with Python
 
-System performance tuning awareness
+Threshold-based incident response
 
+Logging & Resource Management
+
+📣 Author
+Ayushi Singh
+GitHub: @TechWithHer
+Building projects to bridge tech, automation, and DevOps.
+
+📄 License
+MIT License – feel free to use and modify.
+
+yaml
+Copy
+Edit
+
+---
+
+Would you like me to generate a matching `config.yaml` template or define use-case-based alerts like low disk space on EC2?
